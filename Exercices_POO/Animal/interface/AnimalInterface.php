@@ -1,6 +1,6 @@
 <?php
 
-namespace MyInterfaces;
+namespace MyInterface;
 
 interface AnimalInterface
 {

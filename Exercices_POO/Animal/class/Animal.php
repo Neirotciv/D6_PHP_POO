@@ -2,32 +2,60 @@
 
 namespace MyClass;
 
-use MyInterfaces\AnimalInterface;
+use Entity\Specie;
+use MyInterface\AnimalInterface;
+use MyClass\Diet;
+use MyClass\Species;
 
 require_once 'Species.php';
 require_once 'Diet.php';
-require_once '../interface/AnimalInterface.php';
+require_once 'interface/AnimalInterface.php';
 
-class Animal extends Species
+/**
+ * Represents an animal that belongs to a certain species
+ * Implements the AnimalInterface
+ */
+class Animal extends Species implements AnimalInterface
 {
-	private Species $species;
+
 	private int $numberOfMembers;
 	private Diet $diet;
+	private Species $species;
 	private int $lifeExpectancy;
 	private int $gestationPeriod;
 	private string $name;
 
-	public function __construct()
+	/**
+	 * Animal constructor.
+	 * @param string $species The name of the species
+	 * @param string $name The name of the animal
+	 */
+	public function __construct(string $species, string $name)
 	{
-		$this->species = new Species();
 		$this->numberOfMembers = 0;
 		$this->diet = new Diet();
+		$this->$species = new Species($species);
 		$this->lifeExpectancy = 0;
 		$this->gestationPeriod = 0;
+		$this->name = $name;
 	}
 
+	/**
+	 * Method to handle when the animal passes away
+	 * From interface
+	 * @param Diet $diet The diet of the animal
+	 */
 	public function passAway($diet)
 	{
 		echo 'died';
+	}
+
+	/**
+	 * Method to get the name of the animal.
+	 * @return string The name of the animal.
+	 */
+	public function getName()
+	{
+		return $this->name;
 	}
 }

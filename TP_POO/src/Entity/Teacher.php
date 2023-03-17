@@ -4,14 +4,16 @@ namespace App\Entity;
 
 use App\Entity\Person;
 
-require('Person.php');
+require_once 'Person.php';
 
 class Teacher extends Person
 {
-    private string $subject;
+    private array $subject;
+    private array $course_supports;
     
     public function setSubject($subject)
     {
         $this->subject = $subject;
     }
+
 }

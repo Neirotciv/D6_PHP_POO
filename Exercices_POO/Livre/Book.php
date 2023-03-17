@@ -2,14 +2,14 @@
 
 class Book
 {
-    private static $uniqueBook = null;
+    private $uniqueBook = null;
     private $title;
 
     private function __construct(){
 
     }
 
-    static public function getInstance()
+    public static function getInstance()
     {
         if (self::$uniqueBook == null) {
             self::$uniqueBook = new Book();

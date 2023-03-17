@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace Entity;
 
-use App\Entity\Person;
+use Entity\Person;
 
 require_once 'Person.php';
 

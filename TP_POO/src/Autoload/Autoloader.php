@@ -1,24 +1,22 @@
 <?php
 
-namespace Autoloader;
+namespace Autoload;
 
-class Autoload
+class Autoloader
 {
-    public static function register()
+    /**
+     * this static method allow to register an autoload module
+     */
+    public static function register(): void
     {
-        spl_autoload_register(array(__CLASS__, 'autoload')); 
+        spl_autoload_register(function($className) {
+            $filePath = str_replace('\\', '/', $className) . '.php';
+            $fullPath = $_SERVER['DOCUMENT_ROOT'] . '/src/' . $filePath;
+        
+            if (file_exists($fullPath)) {
+                require_once $fullPath;
+            }
+        });
     }
 
-    private function autoload($class)
-    {
-        $class = str_replace('\\', '/', $class);
-       
-        // Look for the class file in the different directories
-        $filePath = str_replace('\\', '/', $class) . '.php';
-        $fullPath = ROOT . '/src/' . $filePath;
-    
-        if (file_exists($fullPath)) {
-            require_once $fullPath;
-        }
-    }
 }

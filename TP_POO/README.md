@@ -33,6 +33,7 @@ Un étudiant et un professeur :
 
 ```mermaid
 classDiagram
+    direction LR
     class Person{
         -string name
         -string lastname
@@ -67,17 +68,15 @@ classDiagram
         + update()
     }
    
-    
     PersonService <|-- Person 
+    Person<|--Teacher
+    Person<|--Student
+    Student "1..*" -- "1" Classroom
+    Teacher "1" -- "0..*" Assignment
+    Teacher "1" -- "0..*" Course
     Classroom "1" -- "1" Teacher
     Classroom "1" -- "1..*" Course
     Classroom "1" -- "1..*" Assignment
-    Student "1..*" -- "1" Classroom
-    Teacher "1" -- "0..*" Course
-    Teacher "1" -- "0..*" Assignment
-    Person<|--Teacher
-    Person<|--Student
-    
 ```
 
 ## Docker

@@ -2,8 +2,8 @@
 
 namespace Entity;
 
-use App\Entity\Course;
-use App\Entity\Teacher;
+use Entity\Course;
+use Entity\Teacher;
 
 class Classroom
 {

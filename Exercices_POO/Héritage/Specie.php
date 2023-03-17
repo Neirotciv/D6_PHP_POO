@@ -4,15 +4,7 @@ namespace Entity;
 
 class Specie
 {
-
-    /**
-     * @var string $diet The diet of the species
-     */
     protected $diet;
-    
-    /**
-     * @var int $membersNumber The number of members of the species
-     */
     protected $membersNumber;
 
     /**

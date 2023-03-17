@@ -3,16 +3,18 @@
 // Constant for server root
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-// namespace App;
+use Entity\Course;
+use Entity\Teacher;
+use Entity\Student;
+use Autoload\Autoloader;
 
-// use App\Entity\Course;
-// use App\Entity\Teacher;
-// use App\Entity\Student;
+require_once './Autoload/Autoloader.php';
 
-// require_once './Entity/Teacher.php';
+Autoloader::register();
 
 // Create teachers
-// $phpTeacher = new Teacher('john', 'phashp', 'john@mail.com', 'H4h_a23p9vl@p');
+$phpTeacher = new Teacher('john', 'phashp', 'john@mail.com', 'H4h_a23p9vl@p');
+echo $phpTeacher->getLastName();
 // $jsTeacher = new Teacher('jean', 'jihesse', 'jean@mail.com', 'Jf9sc3dq@lm47');
 
 // Create students

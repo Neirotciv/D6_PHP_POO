@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace Entity;
 
 use Service\AuthenticationService;
 

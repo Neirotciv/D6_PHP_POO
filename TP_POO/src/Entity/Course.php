@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace Entity;
 
 /**
  * Represents a course entity

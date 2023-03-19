@@ -6,7 +6,7 @@ use Entity\Person;
 
 class Teacher extends Person
 {
-    private array $subject;
+    private string $subject;
 
     public function __construct(string $name, string $lastname, string $email, string $password, ?string $subject)
     {

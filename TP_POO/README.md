@@ -2,10 +2,10 @@
 ## Créer une application métier qui permet de gérer les cours ITAkademy:
 
 - [x] Gérer les cours
-    - [ ] Déposer un devoir
-    - [ ] Déposer un cours
-    - [ ] Rendre un devoir
-    - [ ] Noter un devoir
+    - [x] Déposer un devoir
+    - [x] Déposer un cours
+    - [x] Rendre un devoir
+    - [x] Noter un devoir
     - [ ] Calculer la moyenne de l’élève
     - [ ] Calculer la moyenne de la classe
 - [x] Gérer les étudiants
@@ -18,7 +18,7 @@
 - [x] Créer un héritage entre deux classes avec extends ou implements
 - [x] Implémenter le pattern singleton
 - [x] Utiliser l’encapsulation
-- [x] Créer un helper (EtudiantHelper, qui permet d’afficher les cours de l’élève, et ses notes)
+- [x] Créer un helper
 
 ### Bonus
 
@@ -43,38 +43,24 @@ classDiagram
     class Student {
         -array marks
     }
-    class Teacher {
-
-    }
     class Assignment {
         -string title
         -string content
+    }
+    class Teacher {
+
     }
     class Course {
         -string title
         -string content
     }
-    class Classroom {
-        -array courses
-        -array students
-        -array assignment
-        -Teacher teacher
-    }
-    class PersonService {
-        <<service>>
-        + create()
-        + read()
-        + delete()
-        + update()
-    }
    
-    PersonService <|-- Person 
     Person<|--Teacher
     Person<|--Student
     Student "1..*" -- "1" Classroom
     Teacher "1" -- "0..*" Assignment
     Teacher "1" -- "0..*" Course
-    Classroom "1" -- "1" Teacher
+    Classroom "0..*" -- "1" Teacher
     Classroom "1" -- "1..*" Course
     Classroom "1" -- "1..*" Assignment
 ```

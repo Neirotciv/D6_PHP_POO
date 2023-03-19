@@ -54,7 +54,7 @@ class SubmittedAssignement
 
     // Setters
 
-    public function setNote(float $mark)
+    public function setMark(float $mark)
     {
         $this->mark = $mark;
     }

@@ -32,9 +32,9 @@ class AuthenticationService implements AuthenticationServiceInterface
      * @param array $usersList The list of Users to check against
      * @return bool True if the login and password match a user in the $usersList, false otherwise
      */
-    public function connexion(string $login, string $password, array $usersList): bool
+    public function connexion(string $login, string $password, array $users_list): bool
     {
-        foreach ($usersList as $user) {
+        foreach ($users_list as $user) {
             if ($user->getLogin() === $login) {
                 if (password_verify($password, $user->getPassword())) {
                     return true;

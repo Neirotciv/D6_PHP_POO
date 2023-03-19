@@ -13,7 +13,9 @@ class Person
     protected string $lastname;
     protected string $email; // Email is unique for person identification
     protected string $password;
-    protected AuthenticationService $helper;
+    protected string $login;
+    protected AuthenticationService $auth_helper;
+    protected bool $isConnected = false;
 
     /**
      * Creates a new person instance with personnal informations
@@ -27,18 +29,9 @@ class Person
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
-        $this->helper = AuthenticationService::getInstance();
+        $this->login = $email;
+        $this->auth_helper = AuthenticationService::getInstance();
         $this->setPassword($password);
-    }
-
-    /**
-     * Update the password after hashed it
-     * @param  mixed $password
-     * @return void
-     */
-    public function setPassword(string $password)
-    {
-        $this->password = $this->helper->hashPassword($password);
     }
 
     /**
@@ -72,20 +65,50 @@ class Person
         return $this->password;
     }
 
+    public function getIsConnected()
+    {
+        return $this->isConnected;
+    }
+
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
     // Setters
 
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    public function setLastname($lastname)
+    public function setLastname(string $lastname)
     {
         $this->name = $lastname;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->name = $email;
+    }
+
+    /**
+     * Update the password after hashed it
+     * @param  mixed $password
+     * @return void
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $this->auth_helper->hashPassword($password);
+    }
+
+    public function setIsConnected(bool $isConnected)
+    {
+        $this->isConnected = $isConnected;
+    }
+
+    public function setLogin(string $login)
+    {
+        $this->login = $login;
     }
 }

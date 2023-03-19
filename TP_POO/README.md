@@ -66,19 +66,5 @@ classDiagram
 ```
 ## PHP serve
 ```bash
-php -S localhost:8000 -t D:\Programmation\PHP\D6_PHP_POO\TP_POO\src
-```
-
-## Docker
-
-```bash
-# Création de l'image
-
-
-docker build --no-cache -t d6phppoo:latest .
-```
-
-```bash
-# Lancer l'image
-docker run --rm -d -p 9001:80/tcp -v src:/var/www/html d6phppoo:latest
+php -S localhost:8000 -t <path>\D6_PHP_POO\TP_POO\src
 ```

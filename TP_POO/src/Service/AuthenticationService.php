@@ -2,9 +2,7 @@
 
 namespace Service;
 
-use Service\AuthenticationServiceInterface;
-
-require_once './Interface/AuthenticationServiceInterface.php';
+use Service\Interfaces\AuthenticationServiceInterface;
 
 class AuthenticationService implements AuthenticationServiceInterface
 {
@@ -37,13 +35,21 @@ class AuthenticationService implements AuthenticationServiceInterface
     public function connexion(string $login, string $password, array $usersList): bool
     {
         foreach ($usersList as $user) {
-            if ($user->getLogin() === $login && password_verify($password, $user->getPassword)) {
-                return true;
+            if ($user->getLogin() === $login) {
+                if (password_verify($password, $user->getPassword())) {
+                    return true;
+                }
             }
         }
+        // The user does not exist
         return false;
     }
 
+    /**
+     * Hashes a password using the default algorithm.
+     * @param string $password The password to hash.
+     * @return string The hashed password.
+     */
     public function hashPassword(string $password): string
     {
         return password_hash($password, PASSWORD_DEFAULT);

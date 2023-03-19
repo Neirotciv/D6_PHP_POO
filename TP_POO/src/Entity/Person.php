@@ -4,8 +4,6 @@ namespace Entity;
 
 use Service\AuthenticationService;
 
-require_once '../Service/ ,AuthenticationService.php';
-
 /**
  * A representation of a person
  */
@@ -29,11 +27,31 @@ class Person
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
-        $this->setPassword($password);
         $this->helper = AuthenticationService::getInstance();
+        $this->setPassword($password);
+    }
+
+    /**
+     * Update the password after hashed it
+     * @param  mixed $password
+     * @return void
+     */
+    public function setPassword(string $password)
+    {
+        $this->password = $this->helper->hashPassword($password);
+    }
+
+    /**
+     * Override toString, returns a string representation of the person.
+     * @return string The person's last name.
+     */
+    public function __toString()
+    {
+        return $this->name . " " . $this->lastname . " " . $this->email;
     }
 
     // Getters
+
     public function getName()
     {
         return $this->name;
@@ -54,7 +72,7 @@ class Person
         return $this->password;
     }
 
-    // SETTERS
+    // Setters
 
     public function setName($name)
     {
@@ -69,29 +87,5 @@ class Person
     public function setEmail($email)
     {
         $this->name = $email;
-    }
-        
-    /**
-     * Update the password after hashed it
-     * @param  mixed $password
-     * @return void
-     */
-    public function setPassword(string $password)
-    {
-        $this->password = $this->helper->hashPassword($password);
-    }
-
-    /**
-     * Override toString, returns a string representation of the person.
-     * @return string The person's last name.
-     */
-    public function __toString()
-    {
-        return printf(
-            "Student: %s %s %s\n",
-            $this->getname(),
-            $this->getLastname(),
-            $this->getEmail()
-        );
     }
 }

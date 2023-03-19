@@ -1,12 +1,12 @@
 <?php
 
-namespace Service;
+namespace Service\Interfaces;
 
 use Entity\Student;
 use Entity\Teacher;
-use Service\Interfaces\PersonServiceInterface;
 
-class PersonService implements PersonServiceInterface
+
+interface PersonServiceInterface
 {
     /**
      * Creates a new teacher.
@@ -16,11 +16,7 @@ class PersonService implements PersonServiceInterface
      * @param string $password The teacher's password.
      * @return void
      */
-    public function createTeacher(string $name, string $lastname, string $email, string $password)
-    {
-        $teacher = new Teacher($name, $lastname, $email, $password, null);
-        return $teacher;
-    }
+    public function createTeacher(string $name, string $lastname, string $email, string $password);
 
     /**
      * Reads a teacher by email.
@@ -28,15 +24,7 @@ class PersonService implements PersonServiceInterface
      * @param array $teachers An array of teachers to search in.
      * @return Teacher|null The teacher object if found, null otherwise.
      */
-    public function readTeacher(string $email, array $teachers)
-    {
-        foreach ($teachers as $teacher) {
-            if ($teacher->getEmail === $email) {
-                return $teacher;
-            }
-        }
-        return null;
-    }
+    public function readTeacher(string $email, array $teachers);
 
     /**
      * Updates a teacher.
@@ -47,28 +35,15 @@ class PersonService implements PersonServiceInterface
      * @param string $password The teacher's password.
      * @return void
      */
-    public function updateTeacher(Teacher $teacher, string $name, string $lastname, string $email, string $password)
-    {
-        $teacher->setName($name);
-        $teacher->setLastname($lastname);
-        $teacher->setEmail($email);
-        $teacher->setPassword($password);
-        return $teacher;
-    }
+    public function updateTeacher(Teacher $teacher, string $name, string $lastname, string $email, string $password);
 
-     /**
+    /**
      * Deletes a teacher by email.
      * @param string $email The teacher's email address.
      * @param array $teachers An array of teachers to search in.
      * @return void
      */
-    public function deleteTeacher(string $email, array $teachers)
-    {
-        $teacher = $this->readTeacher($email, $teachers);
-        if ($teacher !== null) {
-            unset($teacher);
-        }
-    }
+    public function deleteTeacher(string $email, array $teachers);
 
     /**
      * Creates a new student.
@@ -78,11 +53,7 @@ class PersonService implements PersonServiceInterface
      * @param string $password The student's password.
      * @return void
      */
-    public function createStudent(string $name, string $lastname, string $email, string $password)
-    {
-        $teacher = new Student($name, $lastname, $email, $password);
-        return $teacher;
-    }
+    public function createStudent(string $name, string $lastname, string $email, string $password);
 
     /**
      * Reads a student by email.
@@ -90,15 +61,7 @@ class PersonService implements PersonServiceInterface
      * @param array $students An array of students to search in.
      * @return Student|null The student object if found, null otherwise.
      */
-    public function readStudent(string $email, array $students)
-    {
-        foreach ($students as $student) {
-            if ($student->getEmail === $email) {
-                return $student;
-            }
-        }
-        return null;
-    }
+    public function readStudent(string $email, array $students);
 
     /**
      * Updates a student.
@@ -109,13 +72,7 @@ class PersonService implements PersonServiceInterface
      * @param string $password The student's password.
      * @return void
      */
-    public function updateStudent(Student $student, string $name, string $lastname, string $email, string $password)
-    {
-        $student->setName($name);
-        $student->setLastname($lastname);
-        $student->setEmail($email);
-        $student->setPassword($password);
-    }
+    public function updateStudent(Student $student, string $name, string $lastname, string $email, string $password);
 
     /**
      * Deletes a student by email.
@@ -123,11 +80,5 @@ class PersonService implements PersonServiceInterface
      * @param array $students An array of students to search in.
      * @return void
      */
-    public function deleteStudent(string $email, array $students)
-    {
-        $student = $this->readStudent($email, $students);
-        if ($student !== null) {
-            unset($student);
-        }
-    }
+    public function deleteStudent(string $email, array $students);
 }

@@ -78,12 +78,18 @@ classDiagram
     Classroom "1" -- "1..*" Course
     Classroom "1" -- "1..*" Assignment
 ```
+## PHP serve
+```bash
+php -S localhost:8000 -t D:\Programmation\PHP\D6_PHP_POO\TP_POO\src
+```
 
 ## Docker
 
 ```bash
 # Création de l'image
-docker build --pull --rm -f "TP_POO/Dockerfile" -t d6phppoo:latest "TP_POO"
+
+
+docker build --no-cache -t d6phppoo:latest .
 ```
 
 ```bash
